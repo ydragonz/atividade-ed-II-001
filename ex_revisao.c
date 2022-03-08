@@ -7,9 +7,16 @@ typedef struct {
     float val_abert, val_min, val_max, val_fecha, val_med;
 } Papel;
 
-void menu(Papel *papeis, int *qtd_papel);
+typedef struct {
+    int qtd_papel;
+    Papel p[MAX_PAPEIS];
+} Registro;
 
-void cadastrar(Papel *papeis, int *qtd_papel);
+void inicializar(Registro *r);
+
+void menu(Registro *r);
+
+void cadastrar(Registro *r);
 
 void listar();
 
@@ -19,31 +26,38 @@ void destaques();
 
 int main() {
 
-    Papel papeis[MAX_PAPEIS];
-    int qtd_papel=0; // Quantidade atual de papeis registrados.
+    Registro r;
 
-    menu(papeis, &qtd_papel);
+    inicializar(&r);
+    menu(&r);
 
     return 0;
 }
 
-void menu(Papel *papeis, int *qtd_papel) {
+void inicializar(Registro *r) {
+
+    r->qtd_papel = 0;
+    for(int i=0; i<=MAX_PAPEIS; i++) {
+        *r->p[i].sigla = "";
+        r->p[i].val_abert = 0;
+        r->p[i].val_fecha = 0;
+        r->p[i].val_max = 0;
+        r->p[i].val_med = 0;
+        r->p[i].val_min = 0;
+    }
+}
+
+void menu(Registro *r) {
     
     int opcao=0;
-    
     do {
         system("cls");
-        printf("====== MENU ======\nEscolha uma opcao:\n1) Cadastrar\n2) Listar acoes\n3) Informacoes de um papel\n4) Maior valorizacao e maior queda\n0) Sair\n\nEscolha: ");
-        printf("%d", *qtd_papel);
-        //*qtd_papel = *qtd_papel +1;
-        printf("\n%d", *qtd_papel);
+        printf("====== MENU ======\n\n1) Cadastrar\n2) Listar acoes\n3) Informacoes de um papel\n4) Maior valorizacao e maior queda\n0) Sair\n\nEscolha: ");
         scanf("%d", &opcao);
-
-        *papeis[0].sigla = "Teste";
 
         switch(opcao) {
             case 1:
-                cadastrar(papeis, &qtd_papel);
+                cadastrar(&r);
                 break;
             case 2:
                 listar();
@@ -55,22 +69,28 @@ void menu(Papel *papeis, int *qtd_papel) {
                 destaques();
                 break;
             case 0:
-                exit(0);
+                system("cls");
+                printf("Finalizando o programa...\n\n");
+                break;
+            default:
+                system("cls");
+                printf("====== ERRO ======\nOpcao invalida!\nEscolha: 1, 2, 3, 4, 5 ou 0\n\n");
+                system("pause");
                 break;
         }
     } while(opcao!=0);
 }
 
-void cadastrar(Papel *papeis, int *qtd_papel) {
-    float teste;
+void cadastrar(Registro *r) {
     system("cls");
     printf("====== CADASTRO ======\nDigite a sigla do papel: ");
-    //scanf("%f", teste);
+    gets(r->p[r->qtd_papel].sigla);
+    printf("\n\n%s", r->p[r->qtd_papel].sigla);
 
 
     //*qtd_papel = *qtd_papel + 1;
 
-    printf("\n%d", *qtd_papel);
+    //printf("\n%d", *qtd_papel);
 
     system("pause");
 }
