@@ -1,5 +1,6 @@
 # atividade-ed-II-001
  Repositório utilizado para o desenvolvimento da primeira atividade da disciplina de Estrutura de Dados II da UNAERP.
+ Aluno: Leonardo Bernardes de Oliveira
   
 Proposta da atividade:  
 Escreva um software para cadastramento e análise de papéis do mercado de ações. A análise será
