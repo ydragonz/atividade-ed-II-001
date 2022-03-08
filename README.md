@@ -1,5 +1,5 @@
 # atividade-ed-II-001
- Repositório utilizado para o desenvolvimento da primeira atividade da disciplina de Estrutura de Dados II da UNAERP.
+ Repositório utilizado para o desenvolvimento da primeira atividade da disciplina de Estrutura de Dados II da UNAERP.  
  Aluno: Leonardo Bernardes de Oliveira
   
 Proposta da atividade:  
