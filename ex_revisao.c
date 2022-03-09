@@ -18,11 +18,11 @@ void menu(Registro *r);
 
 void cadastrar(Registro *r);
 
-void listar();
+void listar(Registro *r);
 
-void info();
+void info(Registro *r);
 
-void destaques();
+void destaques(Registror *r);
 
 int main() {
 
@@ -82,20 +82,63 @@ void menu(Registro *r) {
 }
 
 void cadastrar(Registro *r) {
+
     system("cls");
+    if(*r->qtd_papel==50) {
+        printf("O sistema ja esta cheio, nao ha mais espaco disponivel");
+        return;
+    }
+
+    float verifica;
+
     printf("====== CADASTRO ======\nDigite a sigla do papel: ");
-    gets(r->p[r->qtd_papel].sigla);
-    printf("\n\n%s", r->p[r->qtd_papel].sigla);
+    scanf("%s", r->p[r->qtd_papel].sigla);
 
+    printf("\nDigite o valor de abertura: ");
+    scanf("%f", &r->p[r->qtd_papel].val_abert);   
 
-    //*qtd_papel = *qtd_papel + 1;
+    printf("\nDigite o valor minimo: ");
+    scanf("%f", &verifica);
 
-    //printf("\n%d", *qtd_papel);
+    if(verifica > r->p[r->qtd_papel].val_min) {
+        printf("\n\nErro! o valor minimo nao pode ser maior que o valor de abertura\n");
+        system("pause");
+        return;
+    } else {
+        *r->p[r->qtd_papel].val_min = verifica;
+    }
 
+    printf("\nDigite o valor maximo: ");
+    scanf("%f", &verifica);
+
+    if(verifica < r->p[r->qtd_papel].val_max) {
+        printf("\n\nErro! o valor maximo nao pode ser menor que o valor de abertura\n");
+        system("pause");
+        return;
+    } else {
+        *r->p[r->qtd_papel].val_max = verifica;
+    }
+
+    printf("\nDigite o valor de fechamento: ");
+    scanf("%f", &verifica);
+
+    if(verifica >= r->p[r->qtd_papel].val_min && verifica <= r->p[r->qtd_papel].val_max) {
+        *r->p[r->qtd_papel].val_fecha = verifica;
+    } else {
+        printf("\n\nErro! o valor do fechamento precisa estar entre o valor minimo e o valor maximo.\n");
+        system("pause");
+        return;
+    }
+
+    *r->p[r->qtd_papel].val_med = (*r->p[r->qtd_papel].val_fecha + *r->p[r->qtd_papel].val_abert + *r->p[r->qtd_papel].val_max + *r->p[r->qtd_papel].val_min) / 4;
+
+    *r->qtd_papel = *r->qtd_papel + 1;
+    system("cls");
+    printf("------------------\n|\n| Cadastrado com sucesso! \n|\n|----------------");
     system("pause");
 }
 
-void listar() {
+void listar(Registro *r) {
 
 }
 
