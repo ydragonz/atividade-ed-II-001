@@ -22,7 +22,7 @@ void listar(Registro *r);
 
 void info(Registro *r);
 
-void destaques(Registror *r);
+void destaques(Registro *r);
 
 int main() {
 
@@ -60,13 +60,13 @@ void menu(Registro *r) {
                 cadastrar(&r);
                 break;
             case 2:
-                listar();
+                listar(&r);
                 break;
             case 3:
-                info();
+                info(&r);
                 break;
             case 4:
-                destaques();
+                destaques(&r);
                 break;
             case 0:
                 system("cls");
@@ -84,7 +84,7 @@ void menu(Registro *r) {
 void cadastrar(Registro *r) {
 
     system("cls");
-    if(*r->qtd_papel==50) {
+    if(r->qtd_papel==50) {
         printf("O sistema ja esta cheio, nao ha mais espaco disponivel");
         return;
     }
@@ -105,7 +105,7 @@ void cadastrar(Registro *r) {
         system("pause");
         return;
     } else {
-        *r->p[r->qtd_papel].val_min = verifica;
+        r->p[r->qtd_papel].val_min = verifica;
     }
 
     printf("\nDigite o valor maximo: ");
@@ -116,23 +116,23 @@ void cadastrar(Registro *r) {
         system("pause");
         return;
     } else {
-        *r->p[r->qtd_papel].val_max = verifica;
+        r->p[r->qtd_papel].val_max = verifica;
     }
 
     printf("\nDigite o valor de fechamento: ");
     scanf("%f", &verifica);
 
     if(verifica >= r->p[r->qtd_papel].val_min && verifica <= r->p[r->qtd_papel].val_max) {
-        *r->p[r->qtd_papel].val_fecha = verifica;
+        r->p[r->qtd_papel].val_fecha = verifica;
     } else {
         printf("\n\nErro! o valor do fechamento precisa estar entre o valor minimo e o valor maximo.\n");
         system("pause");
         return;
     }
 
-    *r->p[r->qtd_papel].val_med = (*r->p[r->qtd_papel].val_fecha + *r->p[r->qtd_papel].val_abert + *r->p[r->qtd_papel].val_max + *r->p[r->qtd_papel].val_min) / 4;
+    r->p[r->qtd_papel].val_med = (r->p[r->qtd_papel].val_fecha + r->p[r->qtd_papel].val_abert + r->p[r->qtd_papel].val_max + r->p[r->qtd_papel].val_min) / 4;
 
-    *r->qtd_papel = *r->qtd_papel + 1;
+    r->qtd_papel = r->qtd_papel + 1;
     system("cls");
     printf("------------------\n|\n| Cadastrado com sucesso! \n|\n|----------------");
     system("pause");
@@ -142,10 +142,10 @@ void listar(Registro *r) {
 
 }
 
-void info() {
+void info(Registro *r) {
 
 }
 
-void destaques() {
+void destaques(Registro *r) {
 
 }
